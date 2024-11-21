@@ -1,16 +1,20 @@
-import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
-import { Document,Types } from 'mongoose';
+import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
+import { Document, Types } from "mongoose";
+
+
 
 @Schema()
 export class Playlist extends Document {
-  @Prop({ required: true })
-  name: string;
 
-  @Prop({ type: [{ type: Types.ObjectId, ref: 'Video' }] })
-  videos: Types.ObjectId[];
+    @Prop({ required: true })
+    title: string;
 
-  @Prop({ type: Types.ObjectId, ref: 'User', required: true })
-  owner: Types.ObjectId;
+    @Prop({ required: true, type: [String] })
+    movies: string[];
+
+    @Prop({ type: Types.ObjectId, ref: 'User', required: true })
+    createdBy: Types.ObjectId;
 }
 
-export const PlaylistSchema = SchemaFactory.createForClass(Playlist);
+export type PlaylistDocument = Playlist & Document;
+export const PlaylistSchema = SchemaFactory.createForClass(Playlist)
