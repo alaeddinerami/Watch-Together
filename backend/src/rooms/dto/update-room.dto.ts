@@ -1,4 +1,7 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateRoomDto } from './create-room.dto';
-
-export class UpdateRoomDto extends PartialType(CreateRoomDto) {}
+export class UpdateRoomDto {
+    readonly name?: string;
+    readonly period?: Date;
+    readonly playlist?: string;
+    readonly participants?: string[];
+  }
+  
